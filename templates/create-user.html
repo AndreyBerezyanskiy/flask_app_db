@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form role="form" action="{{ url_for('create') }}" method="post">
+    <div>
+      <!-- prettier-ignore -->
+      {{form.username.label}}
+      {{form.username}}
+    </div>
+    <div>
+      <!-- prettier-ignore -->
+      {{form.password.label}}
+      {{form.password}}
+    </div>
+    <!-- prettier-ignore -->
+    <button type="submit" >Add new user</button>
+  </form>
+{% endblock%}
