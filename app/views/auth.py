@@ -1,5 +1,6 @@
 from flask import Blueprint, flash, render_template, redirect, url_for
 from flask_login import login_user, logout_user, login_required, current_user
+from app import db
 
 from app.models import User
 from app.forms import LoginForm
@@ -19,7 +20,7 @@ def login():
         if user:
             login_user(user)
             flash("Login Successful")
-            return redirect(url_for("home.index"))
+            return redirect(url_for("todo.index"))
 
     return render_template("login.html", form=form)
 

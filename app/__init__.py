@@ -21,6 +21,7 @@ migration = Migrate()
 def create_app(environment="development"):
     from config import config
     from app.views import auth_blueprint, home_blueprint, user_blueprint, todo_blueprint
+    from app.models import User
 
     app = Flask(__name__)
 
@@ -37,5 +38,9 @@ def create_app(environment="development"):
     app.register_blueprint(home_blueprint)
     app.register_blueprint(user_blueprint)
     app.register_blueprint(todo_blueprint)
+
+    @login_manager.user_loader
+    def get_user(id):
+        return User.query.get(int(id))
 
     return app

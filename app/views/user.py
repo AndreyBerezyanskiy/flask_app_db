@@ -16,6 +16,9 @@ def create():
 
         db.session.add(user)
         db.session.commit()
+        # user: User = db.query.filter_by(username=form.username.data)
+        # user.is_active = True
+        # db.session.commit()
         flash("User was added")
         return redirect(url_for("home.index"))
 

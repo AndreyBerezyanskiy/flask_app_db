@@ -9,9 +9,9 @@
 {% block content %}
   <h1>Home Page</h1>
 
-  <!-- {% if user%}
+  <!-- {% if current_user.is_authenticated %}
     <div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-      <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
+      <div class="bg-text-gray-700 rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
             <div class="mb-4">
                 <h1 class="text-grey-darkest">Todo List</h1>
                 <div class="flex mt-4">
