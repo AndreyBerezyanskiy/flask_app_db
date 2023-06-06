@@ -16,7 +16,13 @@ faker = "^18.10.0"
 psycopg2-binary = "^2.9.6"
 flask-login = "^0.6.2"
 python-dotenv = "^1.0.0"
+pydantic = "^1.10.8"
 
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.0.0"
+black = "^23.3.0"
+pytest = "^7.3.1"
 
 [build-system]
 requires = ["poetry-core"]
