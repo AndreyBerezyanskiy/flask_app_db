@@ -7,9 +7,9 @@
         <div class="mb-4">
             <h1 class="text-grey-darkest">Todo List</h1>
             <div class="flex mt-4">
-                <form role="form" action="{{ url_for('todo.add_todo') }}" method="post">
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Add Todo">
-                    {{form.title(class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker")}}
+                <form role="form" action="{{ url_for('todo.index') }}" method="post">
+                    <!-- <input class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Add Todo"> -->
+                  {{form.title(class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker")}}
                     <button class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal">Add</button>
                 </form>
             </div>
@@ -18,15 +18,10 @@
             {% for todo in todos %}
                 <div class="flex mb-4 items-center">
                     <p class="w-full text-grey-darkest">{{ todo.title }}</p>
-                    <button class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green">Done</button>
-                    <button class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</button>
+                    <a href="{{ url_for('home.index')}}" class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-grey border-grey hover:bg-grey">Not Done</a>
+                    <a  href="{{ url_for('todo.delete_todo', todo_id=todo.id )}}" class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</a>
                 </div>
             {% endfor %}
-          	<div class="flex mb-4 items-center">
-                <p class="w-full line-through text-green">NOT IN LOOP</p>
-                <button class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-grey border-grey hover:bg-grey">Not Done</button>
-                <button class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</button>
-            </div>
         </div>
     </div>
 </div>

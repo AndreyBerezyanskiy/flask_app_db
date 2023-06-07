@@ -12,13 +12,13 @@ user_blueprint = Blueprint("user", __name__, url_prefix="/user")
 def create():
     form = AddUserForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, password=form.password.data)
+        # TODO place is_active = true to email validation
+        user = User(
+            username=form.username.data, password=form.password.data, is_active=True
+        )
 
         db.session.add(user)
         db.session.commit()
-        # user: User = db.query.filter_by(username=form.username.data)
-        # user.is_active = True
-        # db.session.commit()
         flash("User was added")
         return redirect(url_for("home.index"))
 
