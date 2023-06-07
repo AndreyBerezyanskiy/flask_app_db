@@ -17,6 +17,7 @@ psycopg2-binary = "^2.9.6"
 flask-login = "^0.6.2"
 python-dotenv = "^1.0.0"
 pydantic = "^1.10.8"
+pytest = "^7.3.1"
 
 
 [tool.poetry.group.dev.dependencies]

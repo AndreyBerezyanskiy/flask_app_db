@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, render_template, redirect, url_for
+from flask import Blueprint, flash, render_template, redirect, url_for, session
 from flask_login import login_user, logout_user, login_required, current_user
 from app import db
 
@@ -28,6 +28,7 @@ def login():
 @auth_blueprint.route("/logout")
 @login_required
 def logout():
-    logout_user(current_user)
+    logout_user()
+    session.clear()
 
     return redirect(url_for("home.index"))
