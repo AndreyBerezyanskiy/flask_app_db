@@ -19,10 +19,8 @@ class BaseConfig(BaseSettings):
 class DevelopmentConfig(BaseConfig):
     DEBUG: bool = True
 
-    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:postgres@127.0.0.1:5433/postgres"
-    # SQLALCHEMY_DATABASE_URI = os.environ.get(
-    #     "DATABASE_URL", "sqlite:///" + os.path.join(base_dir, "database.sqlite3")
-    # )
+    # SQLALCHEMY_DATABASE_URI = "postgresql://postgres:postgres@127.0.0.1:5433/postgres"
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 
 class TestingConfig(BaseConfig):

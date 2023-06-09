@@ -21,7 +21,7 @@ migration = Migrate()
 def create_app(environment="development"):
     from config import config
     from app.views import auth_blueprint, home_blueprint, user_blueprint, todo_blueprint
-    from app.models import User
+    from app.models import User, AnonymousUser
 
     app = Flask(__name__)
 
@@ -42,5 +42,9 @@ def create_app(environment="development"):
     @login_manager.user_loader
     def get_user(id):
         return User.query.get(int(id))
+
+    login_manager.login_view = "auth.login"
+    login_manager.login_message_category = "info"
+    login_manager.anonymous_user = AnonymousUser
 
     return app

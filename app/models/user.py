@@ -1,5 +1,5 @@
 from app import db
-from flask_login import UserMixin
+from flask_login import UserMixin, AnonymousUserMixin
 
 
 class User(db.Model, UserMixin):
@@ -10,7 +10,11 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(64), nullable=False)
     is_active = db.Column(db.Boolean, default=False)
 
-    todos = db.relationship("Todo", backref='user')
+    todos = db.relationship("Todo", backref="user")
 
     def __repr__(self):
         return f"User('{self.username}', '{self.password}')"
+
+
+class AnonymousUser(AnonymousUserMixin):
+    pass

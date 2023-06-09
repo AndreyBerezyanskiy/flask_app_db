@@ -13,6 +13,14 @@ def create():
     form = AddUserForm()
     if form.validate_on_submit():
         # TODO place is_active = true to email validation
+        existing_user: User = User.query.filter(
+            User.username == form.username.data
+        ).first()
+
+        if existing_user:
+            flash("User already exist")
+            return redirect(url_for("home.index"))
+
         user = User(
             username=form.username.data, password=form.password.data, is_active=True
         )
