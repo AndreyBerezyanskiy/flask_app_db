@@ -8,8 +8,8 @@ WORKDIR /front
 COPY . /front/
 RUN yarn
 RUN npx update-browserslist-db@latest -y
-RUN yarn css
-RUN yarn js
+# RUN yarn css
+# RUN yarn js
 
 
 FROM python:3.11-alpine
