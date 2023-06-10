@@ -15,6 +15,20 @@ class BaseConfig(BaseSettings):
     WTF_CSRF_ENABLED: bool = False
     LOCAL_DB_PORT = os.environ.get("LOCAL_DB_PORT", 5433)
 
+    # MAIL_SERVER = "smtp.gmail.com"
+    # MAIL_PORT = 465
+    # MAIL_USERNAME = "andrii.berezianskii@gmail.com"
+    # MAIL_PASSWORD = "qkroxzhzlcilmkvw"
+    # MAIL_USE_TLS = False
+    # MAIL_USE_SSL = True
+
+    MAIL_SERVER = os.environ.get("MAIL_SERVER")
+    MAIL_PORT = os.environ.get("MAIL_PORT")
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
+
 
 class DevelopmentConfig(BaseConfig):
     DEBUG: bool = True
@@ -31,9 +45,17 @@ class TestingConfig(BaseConfig):
     )
 
 
+class ProductionConfig(BaseConfig):
+    SQLALCHEMY_DATABASE_URI = os.environ.get("PRODUCTION_DB")
+
+
 @lru_cache
-def config(name=APP_ENV) -> DevelopmentConfig | TestingConfig:
-    CONF_MAP = dict(development=DevelopmentConfig(), testing=TestingConfig())
+def config(name=APP_ENV) -> DevelopmentConfig | TestingConfig | ProductionConfig:
+    CONF_MAP = dict(
+        development=DevelopmentConfig(),
+        testing=TestingConfig(),
+        production=ProductionConfig,
+    )
     configuration = CONF_MAP[name]
     configuration.ENV = name
 
