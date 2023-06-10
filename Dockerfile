@@ -45,7 +45,7 @@ COPY --chown=app:app poetry.lock .
 COPY --chown=app:app pyproject.toml .
 COPY --chown=app:app poetry.toml .
 
-RUN poetry install --no-dev --no-interaction --no-ansi
+RUN poetry install 
 # add gunicorn
 RUN poetry add gunicorn
 
